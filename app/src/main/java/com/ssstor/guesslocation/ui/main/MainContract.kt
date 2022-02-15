@@ -5,6 +5,5 @@ class MainContract {
 
     }
     interface Presenter {
-        fun getFirstTenLevels()
     }
 }

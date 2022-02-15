@@ -1,4 +1,4 @@
-package com.ssstor.guesslocation.utils
+package com.ssstor.guesslocation.data.entities
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -61,11 +61,15 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
     // RetroFit
-    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     // OKHTTP3
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    // CICERONE
+    implementation 'com.github.terrakok:cicerone:7.1'
     //Maps
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    //YOUTUBE
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
 
 }

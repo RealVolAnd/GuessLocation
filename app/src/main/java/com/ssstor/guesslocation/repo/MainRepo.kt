@@ -1,6 +1,7 @@
 package com.ssstor.guesslocation.repo
 
 
+import com.ssstor.guesslocation.App
 import com.ssstor.guesslocation.INET_BASE_URL
 import com.ssstor.guesslocation.data.entities.GLevel
 import com.ssstor.guesslocation.data.network.Api
@@ -50,6 +51,9 @@ object MainRepo {
                         val responseBody = response.body()
 
                         if (responseBody != null) {
+                            responseBody.levelArray.forEach {
+                                it.pageNumber = App.currentPage
+                            }
                             onSuccess.invoke(responseBody.levelArray)
                         } else {
                             val e=1

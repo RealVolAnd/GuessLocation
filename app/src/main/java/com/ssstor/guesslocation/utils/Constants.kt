@@ -23,6 +23,6 @@ val INET_BASE_URL = "https://ss-stor.com/"
 
 val BLANK_LEVEL = GLevel(0,0,"", GCoordinates(0.0,0.0),0,0)
 
-val LEVEL_STATUS_NEW = 0
-val LEVEL_STATUS_IN_PROCESS = 1
-val LEVEL_STATUS_FINISHED = 3
+val LEVEL_STATUS_LOCKED = 0
+val LEVEL_STATUS_AVAILABLE = 1
+val LEVEL_STATUS_FINISHED = 2

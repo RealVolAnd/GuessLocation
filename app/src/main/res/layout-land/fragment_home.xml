@@ -18,18 +18,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/levels_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_page_title"
+            tools:listitem="@layout/level_item" />
+
         <TextView
             android:id="@+id/home_page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_32dp"
             android:fontFamily="@font/inter_bold"
             android:text="Page 1"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/main_foreground"
             android:textSize="@dimen/big_text"
-            tools:layout_editor_absoluteX="315dp"
-            tools:layout_editor_absoluteY="32dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,16 +73,17 @@
 
         <TextView
             android:id="@+id/home_lives_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginTop="@dimen/margin_8dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/button_common_shape"
-            android:padding="@dimen/padding_16dp"
+            android:background="@android:drawable/btn_star_big_on"
+            android:gravity="center"
             android:text="3"
+            android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/main_foreground"
-            android:textSize="@dimen/big_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middle_text"
             android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/home_store_button"
             app:layout_constraintTop_toTopOf="parent" />

@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_name_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:elevation="@dimen/elevation_5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/main_name_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_32dp"
+            android:layout_marginBottom="@dimen/margin_32dp"
+            android:background="@drawable/button_common_shape"
+            android:padding="@dimen/padding_16dp"
+            android:text="Play"
+            android:textAllCaps="true"
+            android:textColor="@color/main_foreground"
+            android:textSize="@dimen/big_text"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/main_greetings_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/user_name_greetings"
+            android:textColor="@color/white"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/main_name_input_input"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint=""
+            app:layout_constraintEnd_toEndOf="@+id/main_greetings_text"
+            app:layout_constraintStart_toStartOf="@+id/main_greetings_text"
+            app:layout_constraintTop_toBottomOf="@+id/main_greetings_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/main_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_common_shape"
+                android:focusedByDefault="true"
+                android:fontFamily="@font/inter_regular"
+                android:inputType="textEmailAddress"
+                android:maxLength="16"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/gyper_big_text"
+                tools:text="Name" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

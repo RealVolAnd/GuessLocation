@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_foreground">#7300FF</color>
+    <color name="main_foreground">#FFFFFF</color>
     <color name="main_background">#000000</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -9,4 +9,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="color_overlay_background">#BF000000</color>
+
+    <color name="available_level">#2196F3</color>
+    <color name="finished_level">#4CAF50</color>
 </resources>

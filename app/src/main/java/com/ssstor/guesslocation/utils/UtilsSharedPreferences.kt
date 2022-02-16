@@ -15,6 +15,7 @@ object UtilsSharedPreferences {
     }
 
     fun initNewGame() {
+        sharedPreference.saveString(SHP_USER_NAME_KEY, "")
         sharedPreference.saveString(SHP_USER_UID_KEY, UtilsMath.getNewUserId())
         sharedPreference.saveInt(SHP_CURRENT_PAGE_NUM_KEY, 1)
         sharedPreference.saveInt(SHP_CURRENT_LEVEL_ID_KEY, 1)
@@ -26,7 +27,10 @@ object UtilsSharedPreferences {
     }
 
     fun getUserName() = sharedPreference.getValueString(SHP_USER_NAME_KEY)
+    fun setUserName(name:String) = sharedPreference.saveString(SHP_USER_NAME_KEY,name)
     fun getUserUid() = sharedPreference.getValueString(SHP_USER_UID_KEY)
     fun getCurrentPage() = sharedPreference.getValueInt(SHP_CURRENT_PAGE_NUM_KEY)
+    fun setCurrentPage(page:Int) = sharedPreference.saveInt(SHP_CURRENT_PAGE_NUM_KEY,page)
     fun getCurrentLevelId() = sharedPreference.getValueInt(SHP_CURRENT_LEVEL_ID_KEY)
+    fun setCurrentLevelId(levelId:Int) = sharedPreference.saveInt(SHP_CURRENT_LEVEL_ID_KEY,levelId)
 }

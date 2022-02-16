@@ -1,8 +1,8 @@
 package com.ssstor.guesslocation.data.entities
 
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.ssstor.guesslocation.LEVEL_STATUS_NEW
+import com.ssstor.guesslocation.LEVEL_STATUS_LOCKED
+import java.io.Serializable
 
 data class GLevel (
     @SerializedName("page")
@@ -16,5 +16,5 @@ data class GLevel (
     @SerializedName("tryCount")
     var levelTryCount: Int = 0,
     @SerializedName("status")
-    var levelStatus: Int = LEVEL_STATUS_NEW
-)
+    var levelStatus: Int = LEVEL_STATUS_LOCKED
+):Serializable

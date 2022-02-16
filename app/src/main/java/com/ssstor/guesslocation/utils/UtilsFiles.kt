@@ -10,7 +10,7 @@ object UtilsFiles {
     fun loadLevels() {
         var fis: FileInputStream? = null
         try {
-            fis = App.instance.openFileInput("page{${App.currentPage}}");
+            fis = App.instance.openFileInput("page${App.currentPage}");
         } catch (e: FileNotFoundException) {
             e.printStackTrace();
         }
@@ -27,7 +27,7 @@ object UtilsFiles {
     fun saveLevels() {
         var fos: FileOutputStream? = null
         try {
-            fos = App.instance.openFileOutput("page{${App.currentPage}}", Context.MODE_PRIVATE)
+            fos = App.instance.openFileOutput("page${App.currentPage}", Context.MODE_PRIVATE)
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         }

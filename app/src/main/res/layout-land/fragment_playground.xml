@@ -74,7 +74,7 @@
             android:layout_marginBottom="@dimen/margin_8dp"
             android:background="@drawable/button_common_shape"
             android:padding="@dimen/padding_16dp"
-            android:text="@string/speed"
+            android:text="@string/rate_1"
             android:textAllCaps="true"
             android:textColor="@color/main_foreground"
             android:textSize="@dimen/big_text"

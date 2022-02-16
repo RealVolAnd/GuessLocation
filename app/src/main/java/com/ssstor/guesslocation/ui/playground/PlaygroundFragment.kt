@@ -9,15 +9,19 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstan
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.ssstor.guesslocation.App
 import com.ssstor.guesslocation.databinding.FragmentPlaygroundBinding
+import com.ssstor.guesslocation.screens.AndroidScreens
 
 
 class PlaygroundFragment : Fragment(), YouTubePlayerListener {
     private var _vb: FragmentPlaygroundBinding? = null
     private val vb get() = _vb!!
-    var displayHeight: Int = 0
-    var displayWidth: Int = 0
+    private lateinit var playerTracker: YouTubePlayerTracker
+    private lateinit var youtubePlayer: YouTubePlayer
+    private var isPlayerMuted = false
+    private var currentPlayerSpeed = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,24 +32,75 @@ class PlaygroundFragment : Fragment(), YouTubePlayerListener {
         savedInstanceState: Bundle?
     ): View {
         _vb = FragmentPlaygroundBinding.inflate(inflater, container, false)
-
+        setListeners()
         return vb.root
+    }
+
+    private fun setListeners() {
+        vb.pgBackToMenuButton.setOnClickListener {
+            App.instance.router.navigateTo(AndroidScreens().home())
+        }
+
+        vb.pgRestartButton.setOnClickListener {
+            youtubePlayer.seekTo(0F)
+        }
+
+        vb.pgMuteButton.setOnClickListener {
+            togglePlayerMute()
+        }
+        vb.pgSpeedButton.setOnClickListener {
+            togglePlayerSpeed()
+        }
+
+        vb.pgTenSecBackButton.setOnClickListener {
+            val tmpSeconds = playerTracker.currentSecond
+            var targetSeconds = 0F
+            if (tmpSeconds - 10F > 0) targetSeconds = tmpSeconds - 10F
+            youtubePlayer.seekTo(targetSeconds)
+        }
+    }
+
+    private fun togglePlayerMute() {
+        if (isPlayerMuted) {
+            youtubePlayer.unMute()
+            isPlayerMuted = false
+            vb.pgMuteButton.text = "Mute"
+        } else {
+            youtubePlayer.mute()
+            isPlayerMuted = true
+            vb.pgMuteButton.text = "Unmute"
+        }
+    }
+
+    private fun togglePlayerSpeed() {
+        currentPlayerSpeed++
+        if (currentPlayerSpeed == 1) {
+            youtubePlayer.setPlaybackRate(PlayerConstants.PlaybackRate.RATE_1_5)
+            vb.pgSpeedButton.text = "Rate 1.5x"
+        } else if (currentPlayerSpeed == 2) {
+            youtubePlayer.setPlaybackRate(PlayerConstants.PlaybackRate.RATE_2)
+            vb.pgSpeedButton.text = "Rate 2x"
+        } else if (currentPlayerSpeed == 3) {
+            currentPlayerSpeed = 0
+            youtubePlayer.setPlaybackRate(PlayerConstants.PlaybackRate.RATE_1)
+            vb.pgSpeedButton.text = "Rate 1x"
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        val videoPath:String = App.currentPageLevelsList[App.currentLevelId-1].levelVideoPath
-        playVideoByPath( videoPath)
+        val videoPath: String = App.currentPageLevelsList[App.currentLevelId - 1].levelVideoPath
+        playVideoByPath(videoPath)
     }
 
-   private fun playVideoByPath(path: String) {
-       val iFramePlayerOptions: IFramePlayerOptions = IFramePlayerOptions.Builder()
-           .controls(0)
-           .ivLoadPolicy(3)
-           .ccLoadPolicy(1)
-           .build()
-       vb.pgYoutubePlayer?.initialize(this, true, iFramePlayerOptions)
-       vb.pgYoutubePlayer?.enterFullScreen()
+    private fun playVideoByPath(path: String) {
+        val iFramePlayerOptions: IFramePlayerOptions = IFramePlayerOptions.Builder()
+            .controls(0)
+            .ivLoadPolicy(3)
+            .ccLoadPolicy(1)
+            .build()
+        vb.pgYoutubePlayer?.initialize(this, true, iFramePlayerOptions)
+        vb.pgYoutubePlayer?.enterFullScreen()
 
     }
 
@@ -80,7 +135,10 @@ class PlaygroundFragment : Fragment(), YouTubePlayerListener {
     }
 
     override fun onReady(youTubePlayer: YouTubePlayer) {
-        youTubePlayer.loadVideo("unSFkZQiqDs",0F)
+        playerTracker = YouTubePlayerTracker()
+        youtubePlayer = youTubePlayer
+        youtubePlayer.addListener(playerTracker)
+        youtubePlayer.loadVideo("unSFkZQiqDs", 0F)
     }
 
     override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerConstants.PlayerState) {

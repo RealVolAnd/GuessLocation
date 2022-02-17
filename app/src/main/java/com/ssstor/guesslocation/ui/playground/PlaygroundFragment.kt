@@ -93,6 +93,11 @@ class PlaygroundFragment : Fragment(), YouTubePlayerListener {
         playVideoByPath(videoPath)
     }
 
+    override fun onDestroy() {
+        vb.pgYoutubePlayer?.release()
+        super.onDestroy()
+    }
+
     private fun playVideoByPath(path: String) {
         val iFramePlayerOptions: IFramePlayerOptions = IFramePlayerOptions.Builder()
             .controls(0)
@@ -138,7 +143,7 @@ class PlaygroundFragment : Fragment(), YouTubePlayerListener {
         playerTracker = YouTubePlayerTracker()
         youtubePlayer = youTubePlayer
         youtubePlayer.addListener(playerTracker)
-        youtubePlayer.loadVideo("unSFkZQiqDs", 0F)
+        youtubePlayer.loadVideo("__Eo-dvEH7g", 0F)
     }
 
     override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerConstants.PlayerState) {
